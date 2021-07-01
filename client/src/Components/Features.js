@@ -3,7 +3,10 @@ import Card from "./Card";
 
 const Features = () => {
   return (
-    <div class="row g-4">
+    <div class="row ">
+      <Card />
+      <Card />
+      <Card />
       <Card />
     </div>
   );
