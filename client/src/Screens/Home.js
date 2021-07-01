@@ -11,6 +11,9 @@ const Home = () => {
       <section className="container p-5">
         <HeroPage />
       </section>
+      <section className="container p-5">
+        <HeroPage />
+      </section>
     </div>
   );
 };
