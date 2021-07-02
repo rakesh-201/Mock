@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import SignIn from "../assets/signin.svg";
 import Input from "../Components/Input";
+import { NavLink } from "react-router-dom";
 
-const Signin = () => {
+const Signin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,7 +35,15 @@ const Signin = () => {
             placeholder="Confirm Password"
             name="cpassword"
           />
-          <button className="btn btn-primary mt-4">Sign In</button>
+          <NavLink
+            to="/home"
+            className="btn btn-primary mt-4"
+            onClick={() => {
+              props.setShowNav(false);
+            }}
+          >
+            Sign In
+          </NavLink>
         </div>
       </div>
     </div>
