@@ -1,0 +1,25 @@
+.cont {
+  background-color: red;
+  height: 150px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-cont {
+  background-color: blue;
+  height: 80%;
+  width: 80%;
+  align-items: flex-end;
+}
+
+.content-cont {
+  background-color: green;
+  height: 100%;
+  width: 95%;
+}
