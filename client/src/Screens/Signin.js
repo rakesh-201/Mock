@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import SignIn from "../assets/signin.svg";
 import Input from "../Components/Input";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../Store/actions/auth";
 
 const Signin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
 
   return (
     <div className="d-flex align-items-center justify-content-center py-5">
@@ -39,7 +43,7 @@ const Signin = (props) => {
             to="/home"
             className="btn btn-primary mt-4"
             onClick={() => {
-              props.setShowNav(false);
+              dispatch(login());
             }}
           >
             Sign In

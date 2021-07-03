@@ -8,17 +8,13 @@ import HomeIn from "./Screens/HomeIn";
 import Navbar from "./Components/Navbar";
 
 const App = () => {
-  const [showNav, setShowNav] = useState(true);
 
   return (
     <div className="App">
       <Router>
-        {showNav && <Navbar />}
+        <Navbar />
         <Route exact path="/" component={Home} />
-        <Route
-          path="/signin"
-          render={() => <Signin setShowNav={setShowNav} />}
-        />
+        <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/home" component={HomeIn} />
       </Router>

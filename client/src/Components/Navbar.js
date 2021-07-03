@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const loggedIn = useSelector((state) => state.auth.auth);
+
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
@@ -26,16 +29,26 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item mx-2">
-              <NavLink to="/signin" className="nav-link">
-                SignIn
-              </NavLink>
-            </li>
-            <li className="nav-item mx-2">
-              <NavLink to="/signup" className="nav-link">
-                SignUp
-              </NavLink>
-            </li>
+            {loggedIn ? (
+              <li className="nav-item mx-2">
+                <NavLink to="/signup" className="nav-link">
+                  Logout
+                </NavLink>
+              </li>
+            ) : (
+              <>
+                <li className="nav-item mx-2">
+                  <NavLink to="/signin" className="nav-link">
+                    SignIn
+                  </NavLink>
+                </li>
+                <li className="nav-item mx-2">
+                  <NavLink to="/signup" className="nav-link">
+                    SignUp
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
