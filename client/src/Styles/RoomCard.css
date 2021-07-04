@@ -1,25 +1,42 @@
 .cont {
-  background-color: red;
+  background-color: hsl(0, 14%, 85%);
   height: 150px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  /* border-bottom-right-radius: 15px; */
   display: flex;
   flex: 1;
   flex-direction: column;
   overflow: hidden;
   align-items: center;
   justify-content: center;
+  
 }
 
-.color-cont {
-  background-color: blue;
-  height: 80%;
+.cont2 {
+  background-color: transparent;
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
   width: 80%;
-  align-items: flex-end;
+}
+
+#rod1 {
+  height: 80%;
+  width: 10px;
+  border-radius: 5px;
 }
 
 .content-cont {
-  background-color: green;
-  height: 100%;
-  width: 95%;
+  background-color: hsl(0, 14%, 85%);
+  padding: 10px;
 }
+
+.fw-bold {
+  background-color: transparent;
+  margin: 0px;
+  padding: 0px;
+}
+
