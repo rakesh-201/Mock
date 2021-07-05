@@ -1,5 +1,6 @@
 import React from "react";
 import home from "../assets/home.svg";
+import Button from "./Button";
 
 const HeroPage = () => {
   return (
@@ -9,7 +10,7 @@ const HeroPage = () => {
         <p className="lead text-md-start text-center mb-5">
           We help people accomplish their goals!
         </p>
-        <button className="btn btn-primary">Learn More</button>
+        <Button text="Learn More" color="bg-primary" />
       </div>
       <div className="d-none d-md-block">
         <img src={home} className="image" />

@@ -10,12 +10,12 @@ const Input = ({
   placeholder,
   name,
   err,
-  proper,
+  msg,
 }) => {
   return (
     <>
       <div className="d-flex justify-content-center input-con">
-        {(err || !proper) ? (
+        {/* {err || !proper ? (
           <div className="tooltipcont">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -34,29 +34,33 @@ const Input = ({
                 : "Please Fill this required field..."}
             </span>
           </div>
-        ) : null}
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="22"
-          height="40"
-          fill="currentColor"
-          class={iconClass + " icon"}
-          viewBox="0 0 16 16"
-        >
-          <path d={d} />
-        </svg>
-
-        <input
-          value={data.value}
-          onChange={(e) => {
-            setData((prev) => ({ ...prev, value: e.target.value }));
-          }}
-          type={type}
-          placeholder={placeholder}
-          name={name}
-          className="mb-4 input"
-        />
+        ) : null} */}
+        <div className="tooltipcont">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="40"
+            fill="currentColor"
+            className={iconClass + " icon " + (err ? "text-danger" : "")}
+            viewBox="0 0 16 16"
+          >
+            <path d={d} />
+          </svg>
+          {err ? <span className="tooltiptext">{msg}</span> : null}
+        </div>
+        <div>
+          <input
+            value={data.value}
+            onChange={(e) => {
+              setData((prev) => ({ ...prev, value: e.target.value }));
+            }}
+            type={type}
+            placeholder={placeholder}
+            name={name}
+            className="input"
+          />
+          <div className="mb-4"></div>
+        </div>
       </div>
     </>
   );

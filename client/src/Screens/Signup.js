@@ -9,18 +9,18 @@ const Signup = () => {
   const [username, setUsername] = useState({
     value: "",
     err: false,
-    proper: true,
+    msg: "",
   });
-  const [email, setEmail] = useState({ value: "", err: false, proper: true });
+  const [email, setEmail] = useState({ value: "", err: false, msg: "" });
   const [password, setPassword] = useState({
     value: "",
     err: false,
-    proper: true,
+    msg: "",
   });
   const [cpassword, setCpassword] = useState({
     value: "",
     err: false,
-    proper: true,
+    msg: "",
   });
 
   const submitHandler = useCallback(() => {
@@ -31,26 +31,39 @@ const Signup = () => {
       cpassword.value == ""
     ) {
       if (username.value == "") {
-        console.log("username" + username.value);
-        setUsername((prev) => ({ ...prev, err: true }));
+        console.log("in");
+        setUsername((prev) => ({
+          ...prev,
+          err: true,
+          msg: "Please fill this required field!",
+        }));
       } else {
         setUsername((prev) => ({ ...prev, err: false }));
       }
       if (email.value == "") {
-        console.log("username" + email.value);
-        setEmail((prev) => ({ ...prev, err: true }));
+        setEmail((prev) => ({
+          ...prev,
+          err: true,
+          msg: "Please fill this required field!",
+        }));
       } else {
         setEmail((prev) => ({ ...prev, err: false }));
       }
       if (password.value == "") {
-        console.log("username" + password.value);
-        setPassword((prev) => ({ ...prev, err: true }));
+        setPassword((prev) => ({
+          ...prev,
+          err: true,
+          msg: "Please fill this required field!",
+        }));
       } else {
         setPassword((prev) => ({ ...prev, err: false }));
       }
       if (cpassword.value == "") {
-        console.log("username" + cpassword.value);
-        setCpassword((prev) => ({ ...prev, err: true }));
+        setCpassword((prev) => ({
+          ...prev,
+          err: true,
+          msg: "Please fill this required field!",
+        }));
       } else {
         setCpassword((prev) => ({ ...prev, err: false }));
       }
@@ -62,19 +75,31 @@ const Signup = () => {
       const re =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (!re.test(String(email.value).toLowerCase())) {
-        setEmail((prev) => ({ ...prev, proper: false }));
+        setEmail((prev) => ({
+          ...prev,
+          err: true,
+          msg: "Please enter a valid email address!",
+        }));
         return;
       }
-      if (password != cpassword) {
+
+      if (password.value !== cpassword.value) {
+        setCpassword((prev) => ({
+          ...prev,
+          err: true,
+          msg: "Password and Confirm Password fields do not match!",
+        }));
+        return;
       }
+
       history.push("/signin");
     }
   }, [username, email, password, cpassword]);
 
   return (
     <div className="d-flex align-items-center justify-content-center py-5">
-      <div className="d-flex justify-content-evenly align-items-center shadow px-5">
-        <div>
+      <div className="d-flex justify-content-evenly align-items-center shadow p-3 py-4 px-lg-5">
+        <div className="d-none d-md-block">
           <img src={SignUp} className="image m-3" alt="..." />
         </div>
         <div className="">
@@ -88,7 +113,7 @@ const Signup = () => {
             placeholder="User Name"
             name="username"
             err={username.err}
-            proper={username.proper}
+            msg={username.msg}
           />
           <Input
             iconClass="bi bi-envelop-fill"
@@ -99,7 +124,7 @@ const Signup = () => {
             placeholder="Email"
             name="email"
             err={email.err}
-            proper={email.proper}
+            msg={email.msg}
           />
           <Input
             iconClass="bi bi-key"
@@ -110,7 +135,7 @@ const Signup = () => {
             placeholder="Password"
             name="password"
             err={password.err}
-            proper={password.proper}
+            msg={password.msg}
           />
           <Input
             iconClass="bi bi-key-fill"
@@ -121,7 +146,7 @@ const Signup = () => {
             placeholder="Confirm Password"
             name="cpassword"
             err={cpassword.err}
-            proper={cpassword.proper}
+            msg={cpassword.msg}
           />
           <button className="btn btn-primary mt-4" onClick={submitHandler}>
             Sign Up
