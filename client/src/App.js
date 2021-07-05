@@ -6,9 +6,9 @@ import Signin from "./Screens/Signin";
 import Signup from "./Screens/Signup";
 import HomeIn from "./Screens/HomeIn";
 import Navbar from "./Components/Navbar";
+import Room from "./Screens/Room";
 
 const App = () => {
-
   return (
     <div className="App">
       <Router>
@@ -17,6 +17,7 @@ const App = () => {
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/home" component={HomeIn} />
+        <Route path="/room" component={Room} />
       </Router>
     </div>
   );
