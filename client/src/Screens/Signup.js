@@ -1,12 +1,75 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SignUp from "../assets/signup.svg";
 import Input from "../Components/Input";
+import { useHistory } from "react-router-dom";
 
 const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [cpassword, setCpassword] = useState("");
+  const history = useHistory();
+
+  const [username, setUsername] = useState({
+    value: "",
+    err: false,
+    proper: true,
+  });
+  const [email, setEmail] = useState({ value: "", err: false, proper: true });
+  const [password, setPassword] = useState({
+    value: "",
+    err: false,
+    proper: true,
+  });
+  const [cpassword, setCpassword] = useState({
+    value: "",
+    err: false,
+    proper: true,
+  });
+
+  const submitHandler = useCallback(() => {
+    if (
+      username.value == "" ||
+      email.value == "" ||
+      password.value == "" ||
+      cpassword.value == ""
+    ) {
+      if (username.value == "") {
+        console.log("username" + username.value);
+        setUsername((prev) => ({ ...prev, err: true }));
+      } else {
+        setUsername((prev) => ({ ...prev, err: false }));
+      }
+      if (email.value == "") {
+        console.log("username" + email.value);
+        setEmail((prev) => ({ ...prev, err: true }));
+      } else {
+        setEmail((prev) => ({ ...prev, err: false }));
+      }
+      if (password.value == "") {
+        console.log("username" + password.value);
+        setPassword((prev) => ({ ...prev, err: true }));
+      } else {
+        setPassword((prev) => ({ ...prev, err: false }));
+      }
+      if (cpassword.value == "") {
+        console.log("username" + cpassword.value);
+        setCpassword((prev) => ({ ...prev, err: true }));
+      } else {
+        setCpassword((prev) => ({ ...prev, err: false }));
+      }
+    } else {
+      setUsername((prev) => ({ ...prev, err: false }));
+      setEmail((prev) => ({ ...prev, err: false }));
+      setPassword((prev) => ({ ...prev, err: false }));
+      setCpassword((prev) => ({ ...prev, err: false }));
+      const re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!re.test(String(email.value).toLowerCase())) {
+        setEmail((prev) => ({ ...prev, proper: false }));
+        return;
+      }
+      if (password != cpassword) {
+      }
+      history.push("/signin");
+    }
+  }, [username, email, password, cpassword]);
 
   return (
     <div className="d-flex align-items-center justify-content-center py-5">
@@ -14,7 +77,7 @@ const Signup = () => {
         <div>
           <img src={SignUp} className="image m-3" alt="..." />
         </div>
-        <div>
+        <div className="">
           <p className="lead fw-bold">Join Us!</p>
           <Input
             iconClass="bi bi-person-fill"
@@ -24,6 +87,8 @@ const Signup = () => {
             type="text"
             placeholder="User Name"
             name="username"
+            err={username.err}
+            proper={username.proper}
           />
           <Input
             iconClass="bi bi-envelop-fill"
@@ -33,6 +98,8 @@ const Signup = () => {
             type="email"
             placeholder="Email"
             name="email"
+            err={email.err}
+            proper={email.proper}
           />
           <Input
             iconClass="bi bi-key"
@@ -42,6 +109,8 @@ const Signup = () => {
             type="password"
             placeholder="Password"
             name="password"
+            err={password.err}
+            proper={password.proper}
           />
           <Input
             iconClass="bi bi-key-fill"
@@ -51,8 +120,12 @@ const Signup = () => {
             type="password"
             placeholder="Confirm Password"
             name="cpassword"
+            err={cpassword.err}
+            proper={cpassword.proper}
           />
-          <button className="btn btn-primary mt-4">Sign Up</button>
+          <button className="btn btn-primary mt-4" onClick={submitHandler}>
+            Sign Up
+          </button>
         </div>
       </div>
     </div>
