@@ -38,6 +38,11 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="nav-item mx-2">
+                  <NavLink to="/contact" className="nav-link">
+                    Contact us
+                  </NavLink>
+                </li>
+                <li className="nav-item mx-2">
                   <NavLink to="/signin" className="nav-link">
                     SignIn
                   </NavLink>
