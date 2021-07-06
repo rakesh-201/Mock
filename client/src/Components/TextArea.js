@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/Input.css";
+import "../Styles/TextArea.css";
 
 const Input = ({
   d,
@@ -29,7 +29,7 @@ const Input = ({
           {err ? <span className="tooltiptext">{msg}</span> : null}
         </div>
         <div>
-          <input
+          <textarea
             value={data.value}
             onChange={(e) => {
               setData((prev) => ({ ...prev, value: e.target.value }));
@@ -37,7 +37,7 @@ const Input = ({
             type={type}
             placeholder={placeholder}
             name={name}
-            className="input"
+            id="input"
           />
           <div className="mb-4"></div>
         </div>
@@ -45,11 +45,5 @@ const Input = ({
     </>
   );
 };
-
-{
-  /* <div class="tooltip">Hover over me
-  <span class="tooltiptext">Tooltip text</span>
-</div> */
-}
 
 export default Input;
